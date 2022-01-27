@@ -22,3 +22,8 @@ Docker compose will start redis broker, celery worker and flower
 $ docker-compose up
 $ uvicorn main:app --reload
 ```
+
+## API Examples:
+ * http://steamcommunity.com/market/pricehistory/?country=PT&currency=3&appid=730&market_hash_name=Falchion%20Case
+ * https://steamcommunity.com/market/itemordershistogram?country=PK&language=english&currency=1&item_nameid=176096390&two_factor=0&norender=1
+ * https://steamcommunity.com/market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20M4A1-S%20|%20Hyper%20Beast%20(Minimal%20Wear)
