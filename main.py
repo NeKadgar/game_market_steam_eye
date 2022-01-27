@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import FastAPI
 from celery.result import AsyncResult
 
-from background.tasks import pull_history
+from background.tasks.item_base import pull_history
 
 app = FastAPI()
 
