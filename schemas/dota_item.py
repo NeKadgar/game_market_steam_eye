@@ -10,6 +10,13 @@ class DotaItemHistory(BaseModel):
         orm_mode = True
 
 
+class DotaItemCreate(BaseModel):
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
 class DotaItem(BaseModel):
     id: int
     name: str

@@ -17,7 +17,7 @@ services:
 
   dashboard:
     build: .
-    command: celery -A background.tasks.celery flower --port=5555 --broker=redis://redis:6379/0
+    command: celery -A background.celery_app.app flower --port=5555 --broker=redis://redis:6379/0
     ports:
       - 5556:5555
     environment:
