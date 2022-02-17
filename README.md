@@ -15,6 +15,15 @@ $ python3 -m venv venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
+## Database Migrations
+Create migration:
+```bash
+$ alembic revision --autogenerate -m "First migration"
+```
+Apply migration:
+```bash
+$ alembic upgrade head
+```
 
 ## Usage docker
 Docker compose will start redis broker, celery worker and flower
