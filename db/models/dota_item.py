@@ -18,7 +18,9 @@ class DotaItemHistory(Base):
     __tablename__ = 'dota_item_history'
 
     id = Column(Integer, primary_key=True)
-    price = Column(Numeric(precision=6, scale=2), nullable=False)
+    price = Column(Numeric(precision=10, scale=2), nullable=False)
+    volume = Column(Integer, nullable=False, default=0)
+    median_price = Column(Numeric(precision=10, scale=2), nullable=True)
     date = Column(DateTime, default=datetime.datetime.utcnow)
     item_id = Column(Integer, ForeignKey('dota_item.id'))
 

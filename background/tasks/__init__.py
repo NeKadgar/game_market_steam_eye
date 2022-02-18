@@ -1,1 +1,2 @@
-from .item_base import create_item_test_task
+from .item_base import update_steam_items
+from .parser import prepare_dota_tasks

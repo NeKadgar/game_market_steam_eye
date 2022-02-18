@@ -13,7 +13,25 @@ class SteamMarket:
     def __init__(self, client: SteamClient):
         self.client = client
 
-    def fetch_price(self, item_hash_name: str, game_id: int = 570, currency: int = Currency.RUB) -> dict:
+    @staticmethod
+    def _get_price_rub(price: str):
+        return float(price.split()[0].replace(",", "."))
+
+    @staticmethod
+    def _parse_price(response: dict, currency: Currency = Currency.RUB) -> dict:
+        if currency != Currency.RUB:
+            raise Exception("We not support this currency yet")
+        price = SteamMarket._get_price_rub(response.get("lowest_price"))
+        median_price = response.get("median_price", None)
+        median_price = SteamMarket._get_price_rub(median_price) if median_price else None
+        return {
+            "price": price,
+            "median_price": median_price,
+            "volume": response.get("volume", 0),
+            "currency": currency
+        }
+
+    def fetch_price(self, item_hash_name: str, game_id: int = 570, currency: Currency = Currency.RUB) -> dict:
         """Function will fetch current price of item on steam market
 
         :param item_hash_name: full name of item at steam market
@@ -24,12 +42,12 @@ class SteamMarket:
         url = f"{COMMUNITY_URL}/market/priceoverview/"
         params = {
             "country": "RU",
-            'currency': currency,
+            'currency': currency.value,
             'appid': game_id,
             'market_hash_name': item_hash_name
         }
         response = self.client.get(url, params=params)
-        return response.json()
+        return SteamMarket._parse_price(response.json())
 
     def fetch_history(self, item_hash_name: str, game_id: int = 570) -> dict:
         """Function will fetch price history of item on steam market

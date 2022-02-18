@@ -7,14 +7,16 @@ from db.models.dota_item import DotaItemHistory as DotaItemHistoryDB
 
 def create_item(db: Session, item: DotaItemCreate):
     db_item = DotaItemDB(**item.dict())
+    if db.query(DotaItemDB).filter_by(name=db_item.name).one_or_none():
+        return db_item
     db.add(db_item)
     db.commit()
     db.refresh(db_item)
     return db_item
 
 
-def create_item_history(db: Session, item_history: DotaItemHistory, item_id: int):
-    db_item_history = DotaItemHistoryDB(**item_history.dict(), item_id=item_id)
+def create_item_history(db: Session, item_history: DotaItemHistory):
+    db_item_history = DotaItemHistoryDB(**item_history.dict())
     db.add(db_item_history)
     db.commit()
     db.refresh(db_item_history)
@@ -23,3 +25,8 @@ def create_item_history(db: Session, item_history: DotaItemHistory, item_id: int
 
 def get_item(db: Session, pk: int):
     return db.query(DotaItemDB).filter_by(id=pk).one_or_none()
+
+
+def get_all_item_names(db: Session):
+    for item in db.query(DotaItemDB).all():
+        yield item.name, item.id

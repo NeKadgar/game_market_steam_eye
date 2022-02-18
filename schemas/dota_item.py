@@ -1,9 +1,21 @@
-from typing import List
-from pydantic import BaseModel, condecimal
+from typing import List, Optional
+from pydantic import BaseModel, condecimal, Field, validator
+
+
+class SteamDotaItemHistoryRUB(BaseModel):
+    price: condecimal(max_digits=10, decimal_places=2, gt=0) = Field(alias="lowest_price")
+    volume: int
+    median_price: condecimal(max_digits=10, decimal_places=2, gt=0)
+
+    @validator("price", always=True)
+    def validate_price(cls, value):
+        return value.split()[0].replace(",", "")
 
 
 class DotaItemHistory(BaseModel):
-    price: condecimal(max_digits=6, decimal_places=2, gt=0)
+    price: condecimal(max_digits=10, decimal_places=2, gt=0)
+    volume: int
+    median_price: Optional[condecimal(max_digits=10, decimal_places=2, gt=0)]
     item_id: int
 
     class Config:

@@ -1,7 +1,7 @@
 import enum
 
 COMMUNITY_URL = "https://steamcommunity.com"
-MAX_REQUESTS_PER_MINUTE = 1
+MAX_REQUESTS_PER_MINUTE = 20
 
 
 class Currency(enum.IntEnum):
