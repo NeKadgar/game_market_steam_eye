@@ -65,4 +65,6 @@ class SteamMarket:
             'market_hash_name': item_hash_name
         }
         response = self.client.get(url, cookies=True, params=params)
+        if response.status_code != 200:
+            raise Exception(f"Received {response.status_code} http code from {response.url}")
         return response.json()

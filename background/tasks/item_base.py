@@ -4,7 +4,6 @@ from db import get_session
 from repository.dota import create_item
 
 from steam.steam_client import SteamClient
-from steam.steam_market import SteamMarket
 from schemas.dota_item import DotaItemCreate
 
 client = SteamClient(cookies={'steamLoginSecure': '76561198380578038%7C%7CFFD9F1531D2D11B4BF6E69BF87B0FBEBA7945D2B'})

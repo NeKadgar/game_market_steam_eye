@@ -4,7 +4,10 @@ from datetime import timedelta
 from celery import Celery
 from kombu import Exchange, Queue
 
+from db import get_session
+
 app = Celery(__name__, include=['background.tasks'], )
+database_session = next(get_session())
 
 app.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379/0")
 app.conf.result_backend = os.environ.get("CELERY_RESULT_BACKEND", "redis://localhost:6379/1")
