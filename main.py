@@ -1,13 +1,17 @@
+import graphene
 from fastapi import FastAPI
 from celery.result import AsyncResult
+from starlette_graphene3 import GraphQLApp, make_graphiql_handler
 
 from api import dota, parser
+from api.dota.graphql import Query
 from background.tasks.parser import pull_history
 
 
 app = FastAPI(title="Steam Parser")
 app.include_router(dota.items.router)
 app.include_router(parser.history.router)
+app.add_route("/graphql", GraphQLApp(schema=graphene.Schema(query=Query), on_get=make_graphiql_handler()))
 
 
 @app.get("/")

@@ -1,4 +1,6 @@
+alembic==1.7.6
 amqp==5.0.9
+aniso8601==9.0.1
 anyio==3.5.0
 asgiref==3.5.0
 billiard==3.6.4.0
@@ -12,15 +14,25 @@ click-repl==0.2.0
 Deprecated==1.2.13
 fastapi==0.73.0
 flower==1.0.0
+graphene==3.0
+graphql-core==3.1.7
+graphql-relay==3.1.5
 greenlet==1.1.2
 h11==0.13.0
 httptools==0.3.0
 humanize==3.13.1
 idna==3.3
+importlib-metadata==4.11.2
+importlib-resources==5.4.0
 kombu==5.2.3
+Mako==1.1.6
+MarkupSafe==2.1.0
 packaging==21.3
 prometheus-client==0.12.0
+promise==2.3
 prompt-toolkit==3.0.24
+psycopg2==2.9.3
+pycurl==7.44.1
 pydantic==1.9.0
 pyparsing==3.0.7
 python-dotenv==0.19.2
@@ -32,6 +44,7 @@ six==1.16.0
 sniffio==1.2.0
 SQLAlchemy==1.4.31
 starlette==0.17.1
+starlette-graphene3==0.5.1
 tornado==6.1
 typing-extensions==4.0.1
 urllib3==1.26.8
@@ -42,3 +55,4 @@ watchgod==0.7
 wcwidth==0.2.5
 websockets==10.1
 wrapt==1.13.3
+zipp==3.7.0

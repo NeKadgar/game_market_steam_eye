@@ -1,3 +1,4 @@
+from typing import List
 from datetime import datetime
 from sqlalchemy.orm import Session
 
@@ -44,3 +45,8 @@ def get_item_by_name(db: Session, item_hash_name: str, date_from: datetime):
 def get_all_item_names(db: Session):
     for item in db.query(DotaItemDB).all():
         yield item.name, item.id
+
+
+def get_items_by_name_list(db: Session, item_names: List[str]):
+    items = db.query(DotaItemDB).filter(DotaItemDB.name.in_(item_names)).all()
+    return items
